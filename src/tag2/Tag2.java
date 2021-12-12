@@ -16,6 +16,7 @@ public class Tag2 {
             }
         }
         part1(numbers, words);
+        part2(numbers, words);
     }
 
     public static void part1(ArrayList<Integer> numbers, ArrayList<String> words) {
@@ -27,6 +28,24 @@ public class Tag2 {
                 case "down" -> y += numbers.get(i);
                 case "up" -> y -= numbers.get(i);
             }
+        }
+        System.out.println(x * y);
+    }
+
+    public static void part2(ArrayList<Integer> numbers, ArrayList<String> words) {
+        int x = 0;
+        int y = 0;
+        int aim = 0;
+        for (int i = 0; i < input.length / 2; i++) {
+            switch (words.get(i)) {
+                case "forward" -> {
+                    x += numbers.get(i);
+                    y += aim * numbers.get(i);
+                }
+                case "down" -> aim += numbers.get(i);
+                case "up" -> aim -= numbers.get(i);
+            }
+
         }
         System.out.println(x * y);
     }
