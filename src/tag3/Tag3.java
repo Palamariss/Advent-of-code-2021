@@ -29,7 +29,50 @@ public class Tag3 {
         System.out.println(Integer.parseInt(gamma.toString(), 2) * Integer.parseInt(epsilon.toString(), 2));
     }
 
+    public static void part2() {
+        ArrayList<String> oxygen = new ArrayList<String>(Arrays.asList(input));
+        ArrayList<String> co2 = new ArrayList<String>(Arrays.asList(input));
+        int col = 0;
+        while (oxygen.size() > 1) {
+            int cntZero = 0;
+            int cntOne = 0;
+            for (String s : oxygen) {
+                if (s.charAt(col) == '0') {
+                    cntZero++;
+                } else {
+                    cntOne++;
+                }
+            }
+            char max = (cntOne >= cntZero ? '1' : '0');
+            for (int i = oxygen.size() - 1; i >= 0; i--) {
+                if (oxygen.get(i).charAt(col) != max) {
+                    oxygen.remove(i);
+                }
+            }
+            col++;
+        }
+        col = 0;
+        while (co2.size() > 1) {
+            int cntZero = 0;
+            int cntOne = 0;
+            for (String s : co2) {
+                if (s.charAt(col) == '0') {
+                    cntZero++;
+                } else {
+                    cntOne++;
+                }
+            }
+            char min = (cntZero <= cntOne ? '0' : '1');
+            for (int i = co2.size() - 1; i >= 0; i--) {
+                if (co2.get(i).charAt(col) != min) {
+                    co2.remove(i);
+                }
+            }
+            col++;
+        }
+        System.out.println(Integer.parseInt(oxygen.get(0), 2) * Integer.parseInt(co2.get(0), 2));
+    }
     public static void main(String[] args) {
-        part1();
+        part2();
     }
 }
